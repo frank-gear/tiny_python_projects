@@ -1,5 +1,4 @@
-#! /usr/bin/env python3
-#say hello
+#! /usr/bin/env python
 # python -m pytest -xv test.py
 import argparse
 def get_args():
