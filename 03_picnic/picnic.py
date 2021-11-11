@@ -16,34 +16,14 @@ def get_args():
         description='correctly format the items were taking on our picnic',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('positional',
+    parser.add_argument('items',
                         metavar='str',
-                        help='A positional argument')
+                        nargs='+',
+                        help='Items brought')
 
-    parser.add_argument('-a',
-                        '--arg',
-                        help='A named string argument',
-                        metavar='str',
-                        type=str,
-                        default='')
-
-    parser.add_argument('-i',
-                        '--int',
-                        help='A named integer argument',
-                        metavar='int',
-                        type=int,
-                        default=0)
-
-    parser.add_argument('-f',
-                        '--file',
-                        help='A readable file',
-                        metavar='FILE',
-                        type=argparse.FileType('rt'),
-                        default=None)
-
-    parser.add_argument('-o',
-                        '--on',
-                        help='A boolean flag',
+    parser.add_argument('-s',
+                        '--sorted',
+                        help='sort items',
                         action='store_true')
 
     return parser.parse_args()
@@ -51,20 +31,30 @@ def get_args():
 
 # --------------------------------------------------
 def main():
-    """Make a jazz noise here"""
+    """list items"""
 
     args = get_args()
-    str_arg = args.arg
-    int_arg = args.int
-    file_arg = args.file
-    flag_arg = args.on
-    pos_arg = args.positional
+    if args.sorted:
+        args.items.sort()
+    if len(args.items) > 1:
+        items_arg = args.items[0:]
 
-    print(f'str_arg = "{str_arg}"')
-    print(f'int_arg = "{int_arg}"')
-    print('file_arg = "{}"'.format(file_arg.name if file_arg else ''))
-    print(f'flag_arg = "{flag_arg}"')
-    print(f'positional = "{pos_arg}"')
+        if len(items_arg) == 2:
+            print(f'You are bringing {items_arg[0]} and {items_arg[1]}.')
+        else:
+            count = len(items_arg)
+            i = 1
+            sent = f"You are bringing {items_arg[0]}"
+            while i < (count - 1):
+                item = f", {items_arg[i]}"
+                i += 1
+                sent = sent + item
+
+            print(f'{sent}, and {items_arg[-1]}.')
+
+    else:
+        items = args.items[0]
+        print(f'You are bringing {items}.')
 
 
 # --------------------------------------------------
