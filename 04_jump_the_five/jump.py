@@ -20,7 +20,6 @@ def get_args():
                         metavar='str',
                         help='A positional argument')
 
-
     return parser.parse_args()
 
 
@@ -32,28 +31,30 @@ def main():
     pos_arg = args.number
 
     code = {
-        "1" : '9',
-        '2' : '8',
-        '3' : '7',
-        '4' : '6',
-        '5' : '0',
-        '6' : '4',
-        '7' : '3',
-        '8' : '2',
-        '9' : '1',
-        '0' : '5'
+        "1": '9',
+        '2': '8',
+        '3': '7',
+        '4': '6',
+        '5': '0',
+        '6': '4',
+        '7': '3',
+        '8': '2',
+        '9': '1',
+        '0': '5'
     }
-    """for pos_arg in code: pos_arg = str(code.get(pos_arg))"""
+
     i = 0
-    x = len(pos_arg)
-    while i < x :
+    num = len(pos_arg)
+    nunum = ""
+    while i < num:
         if pos_arg[i] in code:
-            pos_arg[i] = str(code.get(pos_arg[i]))
+            nunum = nunum + str(code.get(pos_arg[i]))
             i += 1
         else:
+            nunum = nunum + str(pos_arg[i])
             i += 1
-            return    
-    print(pos_arg)
+    print(nunum)
+
 
 # --------------------------------------------------
 if __name__ == '__main__':
