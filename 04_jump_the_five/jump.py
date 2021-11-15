@@ -29,11 +29,9 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    pos_arg = args.positional
+    pos_arg = args.number
 
-    print(f'positional = "{pos_arg}"')
-
-    numbers = {
+    code = {
         "1" : '9',
         '2' : '8',
         '3' : '7',
@@ -45,6 +43,17 @@ def main():
         '9' : '1',
         '0' : '5'
     }
+    """for pos_arg in code: pos_arg = str(code.get(pos_arg))"""
+    i = 0
+    x = len(pos_arg)
+    while i < x :
+        if pos_arg[i] in code:
+            pos_arg[i] = str(code.get(pos_arg[i]))
+            i += 1
+        else:
+            i += 1
+            return    
+    print(pos_arg)
 
 # --------------------------------------------------
 if __name__ == '__main__':
