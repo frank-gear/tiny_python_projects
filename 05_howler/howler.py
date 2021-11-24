@@ -6,6 +6,7 @@ Purpose: Change files to uppercase
 """
 
 import argparse
+import os
 
 
 # --------------------------------------------------
@@ -54,18 +55,15 @@ def main():
     """Make letters uppercase"""
 
     args = get_args()
-    str_arg = args.arg
-    int_arg = args.int
     file_arg = args.file
-    flag_arg = args.on
     howl = args.howl
 
-    print(f'str_arg = "{str_arg}"')
-    print(f'int_arg = "{int_arg}"')
-    print('file_arg = "{}"'.format(file_arg.name if file_arg else ''))
-    print(f'flag_arg = "{flag_arg}"')
+    if (os.path.isfile(howl)):
+        fh = open(howl).read()
+        print(fh.upper())
 
-    print(howl.upper())
+    else:
+        print(howl.upper())
 
 
 # --------------------------------------------------
