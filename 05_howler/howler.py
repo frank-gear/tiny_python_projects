@@ -58,9 +58,9 @@ def main():
     file_arg = args.file
     howl = args.howl
 
-    if (os.path.isfile(howl)):
-        fh = open(howl).read()
-        print(fh.upper())
+    if os.path.isfile(howl):
+        fhan = open(howl, 'r').read()
+        print(fhan.upper())
 
     else:
         print(howl.upper())
