@@ -21,31 +21,12 @@ def get_args():
                         metavar='str',
                         help='howl string')
 
-    parser.add_argument('-a',
-                        '--arg',
-                        help='A named string argument',
+    parser.add_argument('-o',
+                        '--outfile',
+                        help='A readable file',
                         metavar='str',
                         type=str,
-                        default='')
-
-    parser.add_argument('-i',
-                        '--int',
-                        help='A named integer argument',
-                        metavar='int',
-                        type=int,
-                        default=0)
-
-    parser.add_argument('-f',
-                        '--file',
-                        help='A readable file',
-                        metavar='FILE',
-                        type=argparse.FileType('rt'),
                         default=None)
-
-    parser.add_argument('-o',
-                        '--on',
-                        help='A boolean flag',
-                        action='store_true')
 
     return parser.parse_args()
 
@@ -55,15 +36,26 @@ def main():
     """Make letters uppercase"""
 
     args = get_args()
-    file_arg = args.file
+    file_arg = args.outfile
     howl = args.howl
 
     if os.path.isfile(howl):
         fhan = open(howl, 'r').read()
-        print(fhan.upper())
+        if file_arg:
+            file = open(file_arg, 'w')
+            file.write(fhan.upper())
+
+        else:
+            print(fhan.upper())
 
     else:
-        print(howl.upper())
+        if file_arg:
+            fhan = howl
+            file = open(file_arg, 'w')
+            file.write(fhan.upper())
+
+        else:
+            print(howl.upper())
 
 
 # --------------------------------------------------
